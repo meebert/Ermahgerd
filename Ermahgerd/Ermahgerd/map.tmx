@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="ground" tilewidth="32" tileheight="32">
+  <image source="dirtrock.png" width="64" height="32"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="30" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjATAiAPT2z5a2k2MndS0mxT7qGU3uXaSYj817KB3uFACAInIAFg=
+  </data>
+ </layer>
+</map>

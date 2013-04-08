@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="300" height="30" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="theTiles" tilewidth="16" tileheight="16">
+  <image source="tiles.png" width="320" height="320"/>
+ </tileset>
+ <layer name="walls" width="300" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt1DEKgEAQBMHb/3/aSBAxuMxrqILJJ+q1AAAAAAAAAAAAAAAAAAAAAAAAAIC3+fsAwCa9Air0CqjQK6BCr4AKvQIq9Aqo0CugQq+ACr0CKvQKqDixV/MYwG0O3Nc/gAv4GgA3
+  </data>
+ </layer>
+</map>
