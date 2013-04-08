@@ -1,0 +1,42 @@
+To do:
+Menus- 
+	Main (Graphics)
+	Pause (Resume) 
+		-Popup Idea similar to Restart
+	Settings (Settings)
+		-Credits?
+	Level Select (Graphics)
+
+Text- 
+	Color / Design
+
+Movement-
+	Jump -(Motion / Two-fingers)
+	Tweak Movement
+
+Upside-down Landscape Mode?
+
+Character Art
+	Animation 
+	Alpha Channel
+
+Audio
+	Working, Find other files
+
+PowerUps
+	Design other power ups / Visuals
+
+Tiles:
+Dirt 
+Grass
+Spike
+Wood / Leaves 
+Question Mark Block
+Stone Block
+Cloud
+Hills (I like the smiley face hill lol)
+Flag/Axe/Finish Thingy
+
+
+
+APP ICON
