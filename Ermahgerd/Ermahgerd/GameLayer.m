@@ -19,6 +19,8 @@
     CCTMXLayer *walls;
     CCTMXLayer *powerUp;
     CCTMXLayer *hazards;
+    CCTMXLayer *superPower;
+
     BOOL gameOver;
     BOOL musicSetting;
     BOOL soundSetting;
@@ -45,6 +47,8 @@
     int usedPower[1000];
     int powerCount;
     
+    int usedPowerLive[1000];
+    int powerLiveCount;
     
     CCSprite *_movingSpring;
     bool pauseScreenActive;
@@ -205,6 +209,7 @@ NSString *level;
         walls = [map layerNamed:@"walls"];
         hazards = [map layerNamed:@"hazards"];
         powerUp = [map layerNamed:@"powerUp"];
+        superPower = [map layerNamed:@"ultraPower"];
         
         
         
@@ -313,11 +318,14 @@ NSString *level;
     NSString *scoreString = [NSString stringWithFormat:@"%i",score];
     [scoreLabel setString:scoreString];
     
+    NSString *livesString = [NSString stringWithFormat:@"%i",lives];
+    [livesLabel setString:livesString];
     //Comment
     
     NSString *timeString = [NSString stringWithFormat:@"%i",time];
     [timeLabel setString:timeString];
     
+    [self liveCollision:player];
     [self powerUpCollision:player];
     [self handleHazardCollisions:player];
     [self checkForWin];
@@ -511,6 +519,100 @@ NSString *level;
         }
     }
 }
+
+
+
+-(void)liveCollision:(Player *)p{
+    if (gameOver) {
+        return;
+    }
+    
+    
+    NSArray *tiles = [self getSurroundingTilesAtPosition:p.position forLayer:superPower ];
+    p.ground = NO;
+    for (NSDictionary *dic in tiles){
+        CGRect pRect = [p collBox];
+        int gid = [[dic objectForKey:@"gid"] intValue];
+        if (gid){
+            
+            int temp = floor(player.position.x/map.tileSize.width);
+            NSLog(@"%i", temp);
+            
+            int x = 0;
+            BOOL test = NO;
+            for(x = 0; x < 1000;x++){
+                if(usedPowerLive[x] == temp){
+                    test = YES;
+                }
+            }
+            if(test == NO){
+                usedPowerLive[powerLiveCount] = temp;
+                powerLiveCount++;
+                
+                usedPowerLive[powerLiveCount] = temp-1;
+                powerLiveCount++;
+                
+                usedPowerLive[powerLiveCount] = temp-2;
+                powerLiveCount++;
+                
+                usedPowerLive[powerLiveCount] = temp+1;
+                powerLiveCount++;
+                
+                usedPowerLive[powerLiveCount] = temp+2;
+                powerLiveCount++;
+                
+                
+                lives++;
+            }
+            test = YES;
+            
+            
+            
+            CGRect tileRect = CGRectMake([[dic objectForKey:@"x"] floatValue], [[dic objectForKey:@"y"] floatValue], map.tileSize.width, map.tileSize.height); //5
+            if (CGRectIntersectsRect(pRect, tileRect)){
+                CGRect intersection = CGRectIntersection(pRect, tileRect);
+                int tileIndx = [tiles indexOfObject:dic];
+                if (tileIndx == 0){
+                    p.desiredPos = ccp(p.desiredPos.x, p.desiredPos.y + intersection.size.height);
+                    p.velocity = ccp(p.velocity.x, 0.0);
+                    p.ground = YES;
+                }else if (tileIndx == 1){
+                    p.desiredPos = ccp(p.desiredPos.x, p.desiredPos.y - intersection.size.height);
+                    p.velocity = ccp(p.velocity.x, 0.0);
+                }else if (tileIndx == 2){
+                    p.desiredPos = ccp(p.desiredPos.x + intersection.size.width, p.desiredPos.y);
+                }else if (tileIndx == 3){
+                    p.desiredPos = ccp(p.desiredPos.x - intersection.size.width, p.desiredPos.y);
+                }else{
+                    if (intersection.size.width > intersection.size.height) {
+                        p.velocity = ccp(p.velocity.x, 0.0);
+                        float resolutionHeight;
+                        if (tileIndx > 5) {
+                            resolutionHeight = intersection.size.height;
+                            p.ground = YES;
+                        }else{
+                            resolutionHeight = -intersection.size.height;
+                        }
+                        p.desiredPos = ccp(p.desiredPos.x, p.desiredPos.y + resolutionHeight);
+                    }else{
+                        float resolutionWidth;
+                        if (tileIndx == 6 || tileIndx == 4){
+                            resolutionWidth = intersection.size.width;
+                        }else{
+                            resolutionWidth = -intersection.size.width;
+                        }
+                        p.desiredPos = ccp(p.desiredPos.x + resolutionWidth, p.desiredPos.y);
+                    }
+                }
+            }
+        }
+    }
+    p.position = p.desiredPos;
+    
+    
+    
+}
+
 
 -(void)powerUpCollision:(Player *)p{
     if (gameOver) {
@@ -850,7 +952,7 @@ NSString *level;
 
 -(void)checkForWin {
     //373.0*16
-    if (player.position.x > 350) {
+    if (player.position.x > 373.0*16) {
         [self gameOver:1];
     }
 }

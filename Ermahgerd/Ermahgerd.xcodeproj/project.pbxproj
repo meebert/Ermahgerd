@@ -10,8 +10,8 @@
 		BD2490AA1704834400BEE66E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BD2490A91704834400BEE66E /* Settings.bundle */; };
 		BD2490B71707547E00BEE66E /* App Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BD2490B61707547E00BEE66E /* App Icon.png */; };
 		BD2490BB1707552600BEE66E /* AppIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = BD2490BA1707552600BEE66E /* AppIconSmall.png */; };
-		BD2490C21707671400BEE66E /* tileSet2.png in Resources */ = {isa = PBXBuildFile; fileRef = BD2490C01707671400BEE66E /* tileSet2.png */; };
-		BD2490C717076FE100BEE66E /* levelOne.tmx in Resources */ = {isa = PBXBuildFile; fileRef = BD2490C617076FE100BEE66E /* levelOne.tmx */; };
+		BD38C34B1719DC0300ED6AA7 /* tileSet2.png in Resources */ = {isa = PBXBuildFile; fileRef = BD38C3491719DC0300ED6AA7 /* tileSet2.png */; };
+		BD38C34C1719DC0300ED6AA7 /* levelOne.tmx in Resources */ = {isa = PBXBuildFile; fileRef = BD38C34A1719DC0300ED6AA7 /* levelOne.tmx */; };
 		BD3FC10016E6791B00E8E026 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3FC0FF16E6791B00E8E026 /* QuartzCore.framework */; };
 		BD3FC10216E6791B00E8E026 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3FC10116E6791B00E8E026 /* OpenGLES.framework */; };
 		BD3FC10416E6791B00E8E026 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3FC10316E6791B00E8E026 /* OpenAL.framework */; };
@@ -172,8 +172,8 @@
 		BD2490A91704834400BEE66E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		BD2490B61707547E00BEE66E /* App Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "App Icon.png"; sourceTree = "<group>"; };
 		BD2490BA1707552600BEE66E /* AppIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIconSmall.png; sourceTree = "<group>"; };
-		BD2490C01707671400BEE66E /* tileSet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileSet2.png; sourceTree = "<group>"; };
-		BD2490C617076FE100BEE66E /* levelOne.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = levelOne.tmx; sourceTree = "<group>"; };
+		BD38C3491719DC0300ED6AA7 /* tileSet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileSet2.png; sourceTree = "<group>"; };
+		BD38C34A1719DC0300ED6AA7 /* levelOne.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = levelOne.tmx; sourceTree = "<group>"; };
 		BD3FC0FB16E6791B00E8E026 /* Ermahgerd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ermahgerd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD3FC0FF16E6791B00E8E026 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BD3FC10116E6791B00E8E026 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -563,10 +563,8 @@
 				BDEB541A16F012750038DCA0 /* smile.png */,
 				BDEB540B16EFA02B0038DCA0 /* resume.png */,
 				BDEB540216EF9CDF0038DCA0 /* settingsSelect.png */,
-				BD2490C617076FE100BEE66E /* levelOne.tmx */,
 				BD9C488716F7C1BF00E69FC1 /* test2.tmx */,
 				BD9C488D16F8D46900E69FC1 /* retrySelected.png */,
-				BD2490C01707671400BEE66E /* tileSet2.png */,
 				BD9C488E16F8D46900E69FC1 /* retry.png */,
 				BDEB540316EF9CDF0038DCA0 /* settings.png */,
 				BD9C489516FA9AD500E69FC1 /* erman.png */,
@@ -574,6 +572,8 @@
 				BD9C486E16F4BC2E00E69FC1 /* tiles.png */,
 				BDEB53F916EF984E0038DCA0 /* play.png */,
 				BDEB540616EF9E7F0038DCA0 /* mainSelect.png */,
+				BD38C3491719DC0300ED6AA7 /* tileSet2.png */,
+				BD38C34A1719DC0300ED6AA7 /* levelOne.tmx */,
 				BDEB540716EF9E7F0038DCA0 /* main.png */,
 				BDC2E01C16E6C56E00C11EBC /* dirtrock.png */,
 				BDC2E01D16E6C56E00C11EBC /* map.tmx */,
@@ -1025,11 +1025,11 @@
 				BD2490AA1704834400BEE66E /* Settings.bundle in Resources */,
 				BD2490B71707547E00BEE66E /* App Icon.png in Resources */,
 				BD2490BB1707552600BEE66E /* AppIconSmall.png in Resources */,
-				BD2490C21707671400BEE66E /* tileSet2.png in Resources */,
-				BD2490C717076FE100BEE66E /* levelOne.tmx in Resources */,
 				BD445A10170CEAB800B0F361 /* ross.gif in Resources */,
 				BD445A4A170DC3D900B0F361 /* jump.wav in Resources */,
 				BD445A4B170DC3D900B0F361 /* Nature_Ambiance.wav in Resources */,
+				BD38C34B1719DC0300ED6AA7 /* tileSet2.png in Resources */,
+				BD38C34C1719DC0300ED6AA7 /* levelOne.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
