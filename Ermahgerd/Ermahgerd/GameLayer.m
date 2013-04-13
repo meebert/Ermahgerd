@@ -58,6 +58,16 @@
     CCSprite *winScreen;
     CCMenu *winScreenMenu;
     
+    bool retryScreenActive;
+    CCLayer *retryLayer;
+    CCSprite *retryScreen;
+    CCMenu *retryScreenMenu;
+    
+    bool rScreenActive;
+    CCLayer *rLayer;
+    CCSprite *rScreen;
+    CCMenu *rScreenMenu;
+    
 }
 
 @end
@@ -66,7 +76,6 @@
 @implementation GameLayer
 int lives;
 NSString *level;
-//TESTCOMMIT
 
 +(CCScene *) scene:(int)numLives withLevel:(NSString *)theLevel
 {
@@ -110,6 +119,12 @@ NSString *level;
        //[self.setLives:lives];
        // NSLog(level);
         
+        if(level == @"levelOne.tmx"){
+            level = @"levelOne.tmx";
+        }
+        if(level == @"test2.tmx"){
+            level = @"test2.tmx";
+        }
        if(level == NULL){
             level = @"levelOne.tmx";
             lives = 3;
@@ -592,6 +607,7 @@ NSString *level;
 
 -(void)nextLevelPressed:(id)sender{
 
+    level = @"test2.tmx";;
 
     [self removeChild:winScreen cleanup:YES];
     [self removeChild:winScreenMenu cleanup:YES];
@@ -601,8 +617,37 @@ NSString *level;
     [self newGame];
 }
 
--(void)newGame{
+
+-(void)mainMenuPressed:(id)sender{
+    level =  @"levelOne.tmx";
+
+    [self removeChild:winScreen cleanup:YES];
+    [self removeChild:winScreenMenu cleanup:YES];
+    [self removeChild:winLayer cleanup:YES];
+    [[CCDirector sharedDirector] resume];
+    winScreenActive=FALSE;
+    [self mainMenu];
+    
+}
+
+-(void)diedMenu:(id)sender{
+    [self removeChild:retryScreen cleanup:YES];
+    [self removeChild:retryScreenMenu cleanup:YES];
+    [self removeChild:retryLayer cleanup:YES];
+    [[CCDirector sharedDirector] resume];
+    retryScreenActive=FALSE;
     [[CCDirector sharedDirector] replaceScene:[GameLayer scene:(lives-1) withLevel:level]];
+    
+}
+
+-(void)mainMenu{
+     level =  @"levelOne.tmx";
+    NSLog(@"main menu pressed");
+    [[CCDirector sharedDirector] replaceScene:[MainMenu scene]];
+
+}
+-(void)newGame{
+    [[CCDirector sharedDirector] replaceScene:[GameLayer scene:(lives) withLevel:level]];
 }
 -(void)gameOver:(BOOL)won {
 	gameOver = YES;
@@ -617,39 +662,57 @@ NSString *level;
 	}
     
     if(!won){
-        if(lives == 0){
+        if((lives) == 0){
+            [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
             [[CCDirector sharedDirector] replaceScene:[MainMenu scene]];
         }else{
-            [[CCDirector sharedDirector] replaceScene:[GameLayer scene:(lives-1) withLevel:level]];
+            
+            
+            
+            retryScreenActive = YES;
+            //if you have music uncomment the line bellow
+            [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
+            //[[CCDirector sharedDirector] pause];
+            CGSize s = [[CCDirector sharedDirector] winSize];
+            retryLayer = [CCLayerColor layerWithColor: ccc4(150, 150, 150, 125) width: s.width height: s.height];
+            retryLayer.position = CGPointZero;
+            [self addChild: retryLayer z:8];
+            
+            retryScreen =[[CCSprite spriteWithFile:@"dirtrock.png"] retain];
+            retryScreen.position= ccp(130, 240);
+            retryScreen.rotation = -90;
+            [self addChild:retryScreen z:8];
+            
+            CCMenuItem *retry = [CCMenuItemImage itemFromNormalImage:@"resume.png" selectedImage:@"resumeSelect.png" target:self selector:@selector(diedMenu:)];
+            retry.position = ccp(250, 190);
+            retryScreenMenu = [CCMenu menuWithItems:retry, nil];
+            retryScreenMenu.position = ccp(0,-90);
+            retryScreenMenu.rotation = -90;
+            [self addChild:retryScreenMenu z:10];
+            
 
         }
 
     }
-    if(won){
-        if(winScreenActive ==NO){
+    if(won && level ==  @"levelOne.tmx"){
+        if(winScreenActive == NO){
 
-            if(level == @"levelOne.tmx"){
-                level = @"test2.tmx";;
-            }
+            
             
             winScreenActive = YES;
             //if you have music uncomment the line bellow
-            //[[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
+            [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
             //[[CCDirector sharedDirector] pause];
             CGSize s = [[CCDirector sharedDirector] winSize];
             winLayer = [CCLayerColor layerWithColor: ccc4(150, 150, 150, 125) width: s.width height: s.height];
             winLayer.position = CGPointZero;
             [self addChild: winLayer z:8];
 
-            
             winScreen =[[CCSprite spriteWithFile:@"dirtrock.png"] retain];
             winScreen.position= ccp(130, 240);
             winScreen.rotation = -90;
             [self addChild:winScreen z:8];
-            
-            NSLog(@"TEST FDLJFJKDLKJFDLFJDLKFJDLKFJDFLKDJFLKJSDLKFJSDLKFJDSLKFJDSLKJFDSLKJFDL");
-
-            
+                    
             CCMenuItem *nextLevel = [CCMenuItemImage itemFromNormalImage:@"resume.png" selectedImage:@"resumeSelect.png" target:self selector:@selector(nextLevelPressed:)];
             nextLevel.position = ccp(250, 190);
             winScreenMenu = [CCMenu menuWithItems:nextLevel, nil];
@@ -660,7 +723,33 @@ NSString *level;
         }
      
         
+    }else if(gameText != @"You have Died!" && level == @"test2.tmx"){
+        if(rScreenActive == NO){
+            rScreenActive = YES;
+            NSLog(@"dslfjhsdfhdskflhsdflksjhdflksdjhfsldkjhfsdlkfjhsdlfkhjsdlfkhjsdflkjsdhflksjhdflskjdhflskjdhf");
+            //if you have music uncomment the line bellow
+            [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
+            //[[CCDirector sharedDirector] pause];
+            CGSize s = [[CCDirector sharedDirector] winSize];
+            rLayer = [CCLayerColor layerWithColor: ccc4(150, 150, 150, 125) width: s.width height: s.height];
+            rLayer.position = CGPointZero;
+            [self addChild: rLayer z:8];
+            
+            rScreen =[[CCSprite spriteWithFile:@"dirtrock.png"] retain];
+            rScreen.position= ccp(130, 240);
+            rScreen.rotation = -90;
+            [self addChild:rScreen z:8];
+            
+            CCMenuItem *main = [CCMenuItemImage itemFromNormalImage:@"resume.png" selectedImage:@"resumeSelect.png" target:self selector:@selector(mainMenuPressed:)];
+            main.position = ccp(250, 190);
+            rScreenMenu = [CCMenu menuWithItems:main, nil];
+            rScreenMenu.position = ccp(0,-90);
+            rScreenMenu.rotation = -90;
+            [self addChild:rScreenMenu z:10];
+            
+        }
     }
+
     
     
     
@@ -761,7 +850,7 @@ NSString *level;
 
 -(void)checkForWin {
     //373.0*16
-    if (player.position.x > 400) {
+    if (player.position.x > 350) {
         [self gameOver:1];
     }
 }

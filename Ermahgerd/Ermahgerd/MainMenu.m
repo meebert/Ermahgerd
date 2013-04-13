@@ -43,6 +43,8 @@
                                         selectedImage:@"settingsSelect.png"
                                         target:self
                                         selector:@selector(settings:)];
+        
+        
         startButton.rotation = -90;
         settingsButton.rotation = -90;
         
@@ -54,7 +56,7 @@
 }
 
 - (void) startGame:(id)sender{
-    [[CCDirector sharedDirector] replaceScene:[GameLayer scene:3 withLevel:@"levelOne.tmx"]];
+    [[CCDirector sharedDirector] replaceScene:[GameLayer scene:2 withLevel:@"levelOne.tmx"]];
 }
 
 - (void) settings:(id)sender{
