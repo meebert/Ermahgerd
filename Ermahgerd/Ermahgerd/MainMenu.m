@@ -10,6 +10,8 @@
 #import "GameLayer.h"
 #import "SettingsMenu.h"
 
+
+
 @implementation MainMenu
 
 +(id) scene {
@@ -27,8 +29,17 @@
         title.rotation = -90;
         [self addChild: title];
         
+        BOOL soundSetting; //Same as in GameLayer, will need to initialize based on Settings Menu
+        BOOL musicSetting;
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        soundSetting = [defaults objectForKey:kSoundKey];
+        musicSetting = [defaults objectForKey:kMusicKey];
+        
+        
         
         CCLayer *menuLayer = [[CCLayer alloc] init];
+        
         
         [self addChild:menuLayer];
         
@@ -51,6 +62,11 @@
         CCMenu *menu = [CCMenu menuWithItems: startButton,settingsButton, nil];
         [menu alignItemsVerticallyWithPadding:150];
         [menuLayer addChild: menu];
+        
+        if(soundSetting)
+            NSLog(@"True");
+        else
+            NSLog(@"False");
     }
     return self;
 }
@@ -61,6 +77,10 @@
 
 - (void) settings:(id)sender{
     [[CCDirector sharedDirector] replaceScene:[SettingsMenu scene]];
+}
+
+-(void) refreshSettings{
+    
 }
 
 @end

@@ -7,6 +7,10 @@
 //
 
 #import "cocos2d.h"
+#define kSoundKey @"sound_setting"
+#define kMusicKey @"music_setting"
+#define kResetKey @"reset_setting"
+#define kScoreKey @"score_setting"
 
 @interface MainMenu : CCLayer {
 }

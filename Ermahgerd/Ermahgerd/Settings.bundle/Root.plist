@@ -38,11 +38,23 @@
 		</dict>
 		<dict>
 			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>High Score</string>
+			<key>Values</key>
+			<array>
+				<string>0</string>
+			</array>
+			<key>Key</key>
+			<string>score_setting</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
 			<string>Reset HighScore</string>
 			<key>Key</key>
-			<string>score_setting</string>
+			<string>reset_setting</string>
 			<key>DefaultValue</key>
 			<false/>
 		</dict>
