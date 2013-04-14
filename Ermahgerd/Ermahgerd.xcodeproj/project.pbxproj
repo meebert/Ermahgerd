@@ -170,7 +170,7 @@
 
 /* Begin PBXFileReference section */
 		BD2490A91704834400BEE66E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		BD2490B61707547E00BEE66E /* App Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "App Icon.png"; sourceTree = "<group>"; };
+		BD2490B61707547E00BEE66E /* App Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "App Icon.png"; path = "../App Icon.png"; sourceTree = "<group>"; };
 		BD2490BA1707552600BEE66E /* AppIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIconSmall.png; sourceTree = "<group>"; };
 		BD38C3491719DC0300ED6AA7 /* tileSet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileSet2.png; sourceTree = "<group>"; };
 		BD38C34A1719DC0300ED6AA7 /* levelOne.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = levelOne.tmx; sourceTree = "<group>"; };
@@ -493,7 +493,6 @@
 			isa = PBXGroup;
 			children = (
 				BD2490BA1707552600BEE66E /* AppIconSmall.png */,
-				BD2490B61707547E00BEE66E /* App Icon.png */,
 				BD3FC11116E6791B00E8E026 /* Ermahgerd */,
 				BD3FC0FE16E6791B00E8E026 /* Frameworks */,
 				BD3FC0FC16E6791B00E8E026 /* Products */,
@@ -528,6 +527,7 @@
 			isa = PBXGroup;
 			children = (
 				BD3FC28916E6791F00E8E026 /* AppDelegate.h */,
+				BD2490B61707547E00BEE66E /* App Icon.png */,
 				BD3FC28A16E6791F00E8E026 /* AppDelegate.m */,
 				BD96AFB016ED1C4300E20A35 /* MainMenu.h */,
 				BD96AFB116ED1C4300E20A35 /* MainMenu.m */,

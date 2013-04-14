@@ -80,6 +80,8 @@
 @implementation GameLayer
 int lives;
 NSString *level;
+BOOL soundSetting; //Same as in GameLayer, will need to initialize based on Settings Menu
+BOOL musicSetting;
 
 +(CCScene *) scene:(int)numLives withLevel:(NSString *)theLevel
 {
@@ -138,9 +140,12 @@ NSString *level;
         }
      
         
-        NSLog(@" init Testststststststststststs");
-        musicSetting = true; //Will have to be able to set them here based on the Settings Menu
-        soundSetting = true; //Setting them true for now
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        soundSetting = [defaults boolForKey:kSoundKey];
+        musicSetting = [defaults boolForKey:kMusicKey];
+        
+        if(musicSetting)
+            NSLog(@"true");
        
         if(musicSetting){
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"Nature_Ambiance.wav" loop:true];
@@ -232,6 +237,12 @@ NSString *level;
         
 	}
 	return self;
+}
+
+-(void) refreshSettings{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    soundSetting = [defaults boolForKey:kSoundKey];
+    musicSetting = [defaults boolForKey:kMusicKey];
 }
 
 -(void)pause:(id)sender{
@@ -536,7 +547,7 @@ NSString *level;
         if (gid){
             
             int temp = floor(player.position.x/map.tileSize.width);
-            NSLog(@"%i", temp);
+            //NSLog(@"%i", temp);
             
             int x = 0;
             BOOL test = NO;
@@ -628,7 +639,7 @@ NSString *level;
         if (gid){
             
             int temp = floor(player.position.x/map.tileSize.width);
-            NSLog(@"%i", temp);
+            //NSLog(@"%i", temp);
 
             int x = 0;
             BOOL test = NO;

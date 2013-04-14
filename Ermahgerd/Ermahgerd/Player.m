@@ -8,6 +8,7 @@
 
 #import "Player.h"
 #import "SimpleAudioEngine.h"
+#import "MainMenu.h"
 
 
 @implementation Player
@@ -18,19 +19,28 @@
 @synthesize jump = _jump;
 @synthesize backward = _backward;
 
-
-BOOL soundSetting = true; //Same as in GameLayer, will need to initialize based on Settings Menu
-BOOL musicSetting = true;
-
+BOOL soundSetting; //Same as in GameLayer, will need to initialize based on Settings Menu
+BOOL musicSetting;
 
 -(id)initWithFile:(NSString *)filename
 {
+
     if (self = [super initWithFile:filename]) {
         self.velocity = ccp(0.0, 0.0);
     }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    soundSetting = [defaults boolForKey:kSoundKey];
+    musicSetting = [defaults boolForKey:kMusicKey];
+    
     return self;
 }
 
+-(void) refreshSettings{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    soundSetting = [defaults boolForKey:kSoundKey];
+    musicSetting = [defaults boolForKey:kMusicKey];
+}
 
 -(void)update:(ccTime)time
 {

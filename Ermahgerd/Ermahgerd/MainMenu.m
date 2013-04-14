@@ -21,6 +21,9 @@
     return scene;
 }
 
+BOOL soundSetting; //Same as in GameLayer, will need to initialize based on Settings Menu
+BOOL musicSetting;
+
 -(id) init{
     
     if( (self=[super init] )) {
@@ -33,8 +36,8 @@
         BOOL musicSetting;
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        soundSetting = [defaults objectForKey:kSoundKey];
-        musicSetting = [defaults objectForKey:kMusicKey];
+        soundSetting = [defaults boolForKey:kSoundKey];
+        musicSetting = [defaults boolForKey:kMusicKey];
         
         
         
@@ -80,7 +83,9 @@
 }
 
 -(void) refreshSettings{
-    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    soundSetting = [defaults boolForKey:kSoundKey];
+    musicSetting = [defaults boolForKey:kMusicKey];
 }
 
 @end
