@@ -11,24 +11,10 @@
 			<string>Settings</string>
 		</dict>
 		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
 			<key>TrueValue</key>
-			<string>True</string>
+			<string>TRUE</string>
 			<key>FalseValue</key>
-			<string>False</string>
-			<key>Title</key>
-			<string>Sound Setting</string>
-			<key>Key</key>
-			<string>sound_setting</string>
-			<key>DefaultValue</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>TrueValue</key>
-			<string>True</string>
-			<key>FalseValue</key>
-			<string>False</string>
+			<string>FALSE</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
@@ -37,6 +23,48 @@
 			<string>music_setting</string>
 			<key>DefaultValue</key>
 			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>TrueValue</key>
+			<string>TRUE</string>
+			<key>FalseValue</key>
+			<string>FALSE</string>
+			<key>Title</key>
+			<string>Sound Setting</string>
+			<key>Key</key>
+			<string>sound_setting</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Mode</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Hardcore Mode</string>
+			<key>Key</key>
+			<string>hardcore_setting</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSSliderSpecifier</string>
+			<key>Key</key>
+			<string>slider_slider</string>
+			<key>DefaultValue</key>
+			<integer>50</integer>
+			<key>MinimumValue</key>
+			<integer>0</integer>
+			<key>MaximumValue</key>
+			<integer>100</integer>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -65,18 +93,6 @@
 			<string>reset_setting</string>
 			<key>DefaultValue</key>
 			<false/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSSliderSpecifier</string>
-			<key>Key</key>
-			<string>slider_slider</string>
-			<key>DefaultValue</key>
-			<integer>50</integer>
-			<key>MinimumValue</key>
-			<integer>0</integer>
-			<key>MaximumValue</key>
-			<integer>100</integer>
 		</dict>
 	</array>
 </dict>

@@ -29,9 +29,7 @@ BOOL musicSetting;
         self.velocity = ccp(0.0, 0.0);
     }
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    soundSetting = [defaults boolForKey:kSoundKey];
-    musicSetting = [defaults boolForKey:kMusicKey];
+    [self refreshSettings];
     
     return self;
 }
@@ -44,11 +42,11 @@ BOOL musicSetting;
 
 -(void)update:(ccTime)time
 {
-    CGPoint gravity = ccp(0.0, -200.0);
+    CGPoint gravity = ccp(0.0, -300.0);
     CGPoint gravityStep = ccpMult(gravity, time);
     
-    CGPoint forwardMove = ccp(800.0, 0.0);
-    CGPoint backwardMove = ccp(-800.0, 0.0);
+    CGPoint forwardMove = ccp(600.0, 0.0);
+    CGPoint backwardMove = ccp(-600.0, 0.0);
     
     CGPoint forwardStep = ccpMult(forwardMove, time);
     CGPoint backwardStep = ccpMult(backwardMove, time);
@@ -56,7 +54,7 @@ BOOL musicSetting;
     self.velocity = ccpAdd(self.velocity, gravityStep);
     self.velocity = ccp(self.velocity.x * 0.90, self.velocity.y);
     
-    CGPoint jumpForce = ccp(0.0, 400.0);
+    CGPoint jumpForce = ccp(0.0, 300.0);
     
     float jumpCutoff = 150.0;
     
@@ -65,10 +63,6 @@ BOOL musicSetting;
         if(soundSetting){
             [[SimpleAudioEngine sharedEngine] playEffect:@"jump.wav"];
         }
-    }
-    
-    if (self.jump && self.ground) {
-        self.velocity = ccpAdd(self.velocity, jumpForce);
     } else if (!self.jump && self.velocity.y > jumpCutoff) {
         self.velocity = ccp(self.velocity.x, jumpCutoff);
     }

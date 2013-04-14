@@ -32,12 +32,7 @@ BOOL musicSetting;
         title.rotation = -90;
         [self addChild: title];
         
-        BOOL soundSetting; //Same as in GameLayer, will need to initialize based on Settings Menu
-        BOOL musicSetting;
-        
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        soundSetting = [defaults boolForKey:kSoundKey];
-        musicSetting = [defaults boolForKey:kMusicKey];
+        [self refreshSettings];
         
         
         

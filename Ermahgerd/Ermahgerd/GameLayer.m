@@ -140,9 +140,7 @@ BOOL musicSetting;
         }
      
         
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        soundSetting = [defaults boolForKey:kSoundKey];
-        musicSetting = [defaults boolForKey:kMusicKey];
+        [self refreshSettings];
         
         if(musicSetting)
             NSLog(@"true");
@@ -450,6 +448,8 @@ BOOL musicSetting;
         CGPoint touchLocation = [self convertTouchToNodeSpace:t];
         
         player.jump = NO;
+        if(touches.count == 2)
+            player.jump = YES;
         
         if (touchLocation.y < 200 && touchLocation.y >200) {
             //    player.jump = YES;
