@@ -70,7 +70,7 @@ BOOL musicSetting;
 }
 
 - (void) startGame:(id)sender{
-    [[CCDirector sharedDirector] replaceScene:[GameLayer scene:2 withLevel:@"levelOne.tmx"]];
+    [[CCDirector sharedDirector] replaceScene:[GameLayer scene:3 withLevel:@"levelOne.tmx"]];
 }
 
 - (void) settings:(id)sender{

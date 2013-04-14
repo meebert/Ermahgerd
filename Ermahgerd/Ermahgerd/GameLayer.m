@@ -15,6 +15,7 @@
 @interface GameLayer()
 {
     Player * player;
+    
     CCTMXTiledMap *map;
     CCTMXLayer *walls;
     CCTMXLayer *powerUp;
@@ -221,13 +222,13 @@ BOOL musicSetting;
         [self addChild:menuLayer];
         
         CCMenuItemImage *pauseButton = [CCMenuItemImage
-                                        itemFromNormalImage:@"pauseButton.png"
-                                        selectedImage:@"pauseButton.png"
+                                        itemFromNormalImage:@"pause.png"
+                                        selectedImage:@"pause.png"
                                         target:self
                                         selector:@selector(pause:)];
         
         pauseButton.rotation = -90;
-        pauseButton.position = ccp(-140, -200);
+        pauseButton.position = ccp(-150, -190);
         CCMenu *pauseMenu = [CCMenu menuWithItems: pauseButton, nil];
         [menuLayer addChild:pauseMenu];
         
@@ -776,6 +777,7 @@ BOOL musicSetting;
     
     if(!won){
         if((lives) == 0){
+            level =  @"levelOne.tmx";
             [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
             [[CCDirector sharedDirector] replaceScene:[MainMenu scene]];
         }else{
@@ -963,7 +965,7 @@ BOOL musicSetting;
 
 -(void)checkForWin {
     //373.0*16
-    if (player.position.x > 373.0*16) {
+    if (player.position.x > 900) {
         [self gameOver:1];
     }
 }
