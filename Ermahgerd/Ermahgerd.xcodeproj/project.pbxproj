@@ -20,6 +20,11 @@
 		BD38C35E171A59DA00ED6AA7 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = BD38C359171A59D900ED6AA7 /* right.png */; };
 		BD38C35F171A59DA00ED6AA7 /* settings1.png in Resources */ = {isa = PBXBuildFile; fileRef = BD38C35A171A59D900ED6AA7 /* settings1.png */; };
 		BD38C361171A5BAC00ED6AA7 /* jump.png in Resources */ = {isa = PBXBuildFile; fileRef = BD38C360171A5BAC00ED6AA7 /* jump.png */; };
+		BD38C37E171B136200ED6AA7 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = BD38C37D171B136200ED6AA7 /* play.png */; };
+		BD38C382171B141D00ED6AA7 /* playSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = BD38C381171B141D00ED6AA7 /* playSelect.png */; };
+		BD38C385171B14F000ED6AA7 /* tutorialSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = BD38C383171B14F000ED6AA7 /* tutorialSelect.png */; };
+		BD38C386171B14F000ED6AA7 /* tutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = BD38C384171B14F000ED6AA7 /* tutorial.png */; };
+		BD38C388171B1C2800ED6AA7 /* ermah.png in Resources */ = {isa = PBXBuildFile; fileRef = BD38C387171B1C2800ED6AA7 /* ermah.png */; };
 		BD3FC10016E6791B00E8E026 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3FC0FF16E6791B00E8E026 /* QuartzCore.framework */; };
 		BD3FC10216E6791B00E8E026 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3FC10116E6791B00E8E026 /* OpenGLES.framework */; };
 		BD3FC10416E6791B00E8E026 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3FC10316E6791B00E8E026 /* OpenAL.framework */; };
@@ -164,8 +169,6 @@
 		BDC2E01F16E6C56E00C11EBC /* map.tmx in Resources */ = {isa = PBXBuildFile; fileRef = BDC2E01D16E6C56E00C11EBC /* map.tmx */; };
 		BDEB53DC16ED44DA0038DCA0 /* SettingsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = BDEB53DB16ED44DA0038DCA0 /* SettingsMenu.m */; };
 		BDEB53F316ED54A80038DCA0 /* pauseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BDEB53F216ED54A80038DCA0 /* pauseButton.png */; };
-		BDEB53FA16EF984E0038DCA0 /* playSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = BDEB53F816EF984E0038DCA0 /* playSelect.png */; };
-		BDEB53FB16EF984E0038DCA0 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = BDEB53F916EF984E0038DCA0 /* play.png */; };
 		BDEB540416EF9CDF0038DCA0 /* settingsSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = BDEB540216EF9CDF0038DCA0 /* settingsSelect.png */; };
 		BDEB540516EF9CDF0038DCA0 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = BDEB540316EF9CDF0038DCA0 /* settings.png */; };
 		BDEB540816EF9E7F0038DCA0 /* mainSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = BDEB540616EF9E7F0038DCA0 /* mainSelect.png */; };
@@ -190,6 +193,11 @@
 		BD38C359171A59D900ED6AA7 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
 		BD38C35A171A59D900ED6AA7 /* settings1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings1.png; sourceTree = "<group>"; };
 		BD38C360171A5BAC00ED6AA7 /* jump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jump.png; sourceTree = "<group>"; };
+		BD38C37D171B136200ED6AA7 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
+		BD38C381171B141D00ED6AA7 /* playSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playSelect.png; sourceTree = "<group>"; };
+		BD38C383171B14F000ED6AA7 /* tutorialSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialSelect.png; sourceTree = "<group>"; };
+		BD38C384171B14F000ED6AA7 /* tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial.png; sourceTree = "<group>"; };
+		BD38C387171B1C2800ED6AA7 /* ermah.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ermah.png; sourceTree = "<group>"; };
 		BD3FC0FB16E6791B00E8E026 /* Ermahgerd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ermahgerd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD3FC0FF16E6791B00E8E026 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BD3FC10116E6791B00E8E026 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -473,8 +481,6 @@
 		BDEB53DA16ED44DA0038DCA0 /* SettingsMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMenu.h; sourceTree = "<group>"; };
 		BDEB53DB16ED44DA0038DCA0 /* SettingsMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMenu.m; sourceTree = "<group>"; };
 		BDEB53F216ED54A80038DCA0 /* pauseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pauseButton.png; sourceTree = "<group>"; };
-		BDEB53F816EF984E0038DCA0 /* playSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playSelect.png; sourceTree = "<group>"; };
-		BDEB53F916EF984E0038DCA0 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		BDEB540216EF9CDF0038DCA0 /* settingsSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsSelect.png; sourceTree = "<group>"; };
 		BDEB540316EF9CDF0038DCA0 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		BDEB540616EF9E7F0038DCA0 /* mainSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainSelect.png; sourceTree = "<group>"; };
@@ -572,6 +578,7 @@
 				BD445A49170DC3D900B0F361 /* Nature_Ambiance.wav */,
 				BD38C360171A5BAC00ED6AA7 /* jump.png */,
 				BD38C3541719F04C00ED6AA7 /* pause.png */,
+				BD38C387171B1C2800ED6AA7 /* ermah.png */,
 				BD3FC11516E6791B00E8E026 /* Default-Landscape~ipad.png */,
 				BD38C356171A59D900ED6AA7 /* hazards.png */,
 				BD38C357171A59D900ED6AA7 /* left.png */,
@@ -586,16 +593,18 @@
 				BDEB540A16EFA02B0038DCA0 /* resumeSelect.png */,
 				BDEB541A16F012750038DCA0 /* smile.png */,
 				BDEB540B16EFA02B0038DCA0 /* resume.png */,
+				BD38C37D171B136200ED6AA7 /* play.png */,
 				BDEB540216EF9CDF0038DCA0 /* settingsSelect.png */,
 				BD9C488716F7C1BF00E69FC1 /* test2.tmx */,
+				BD38C383171B14F000ED6AA7 /* tutorialSelect.png */,
+				BD38C384171B14F000ED6AA7 /* tutorial.png */,
 				BD9C488D16F8D46900E69FC1 /* retrySelected.png */,
 				BD9C488E16F8D46900E69FC1 /* retry.png */,
 				BDEB540316EF9CDF0038DCA0 /* settings.png */,
 				BD9C489516FA9AD500E69FC1 /* erman.png */,
-				BDEB53F816EF984E0038DCA0 /* playSelect.png */,
 				BD9C486E16F4BC2E00E69FC1 /* tiles.png */,
-				BDEB53F916EF984E0038DCA0 /* play.png */,
 				BDEB540616EF9E7F0038DCA0 /* mainSelect.png */,
+				BD38C381171B141D00ED6AA7 /* playSelect.png */,
 				BD38C3491719DC0300ED6AA7 /* tileSet2.png */,
 				BD38C34A1719DC0300ED6AA7 /* levelOne.tmx */,
 				BDEB540716EF9E7F0038DCA0 /* main.png */,
@@ -1030,8 +1039,6 @@
 				BDC2E01E16E6C56E00C11EBC /* dirtrock.png in Resources */,
 				BDC2E01F16E6C56E00C11EBC /* map.tmx in Resources */,
 				BDEB53F316ED54A80038DCA0 /* pauseButton.png in Resources */,
-				BDEB53FA16EF984E0038DCA0 /* playSelect.png in Resources */,
-				BDEB53FB16EF984E0038DCA0 /* play.png in Resources */,
 				BDEB540416EF9CDF0038DCA0 /* settingsSelect.png in Resources */,
 				BDEB540516EF9CDF0038DCA0 /* settings.png in Resources */,
 				BDEB540816EF9E7F0038DCA0 /* mainSelect.png in Resources */,
@@ -1062,6 +1069,11 @@
 				BD38C35E171A59DA00ED6AA7 /* right.png in Resources */,
 				BD38C35F171A59DA00ED6AA7 /* settings1.png in Resources */,
 				BD38C361171A5BAC00ED6AA7 /* jump.png in Resources */,
+				BD38C37E171B136200ED6AA7 /* play.png in Resources */,
+				BD38C382171B141D00ED6AA7 /* playSelect.png in Resources */,
+				BD38C385171B14F000ED6AA7 /* tutorialSelect.png in Resources */,
+				BD38C386171B14F000ED6AA7 /* tutorial.png in Resources */,
+				BD38C388171B1C2800ED6AA7 /* ermah.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

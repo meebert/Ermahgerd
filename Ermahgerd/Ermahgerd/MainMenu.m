@@ -27,7 +27,8 @@ BOOL musicSetting;
 -(id) init{
     
     if( (self=[super init] )) {
-        CCLabelTTF *title = [CCLabelTTF labelWithString:@"ERMAHGERD" fontName:@"Courier" fontSize:32];
+        CCSprite *title =[[CCSprite spriteWithFile:@"ermah.png"] retain];
+
         title.position =  ccp(50, 240);
         title.rotation = -90;
         [self addChild: title];
@@ -47,18 +48,19 @@ BOOL musicSetting;
                                         selectedImage:@"playSelect.png"
                                         target:self
                                         selector:@selector(startGame:)];
-        CCMenuItemImage *settingsButton = [CCMenuItemImage
-                                        itemFromNormalImage:@"settings.png"
-                                        selectedImage:@"settingsSelect.png"
+        CCMenuItemImage *tutButton = [CCMenuItemImage
+                                        itemFromNormalImage:@"tutorial.png"
+                                        selectedImage:@"tutorialSelect.png"
                                         target:self
-                                        selector:@selector(settings:)];
+                                        selector:@selector(tut:)];
         
         
         startButton.rotation = -90;
-        settingsButton.rotation = -90;
-        
-        CCMenu *menu = [CCMenu menuWithItems: startButton,settingsButton, nil];
-        [menu alignItemsVerticallyWithPadding:150];
+        tutButton.rotation = -90;
+        tutButton.position = ccp(75,-10);
+        startButton.position = ccp(0,-10);
+        CCMenu *menu = [CCMenu menuWithItems: tutButton, startButton, nil];
+       // [menu alignItemsVerticallyWithPadding:75];
         [menuLayer addChild: menu];
         
         if(soundSetting)
@@ -73,7 +75,7 @@ BOOL musicSetting;
     [[CCDirector sharedDirector] replaceScene:[GameLayer scene:3 withLevel:@"levelOne.tmx"]];
 }
 
-- (void) settings:(id)sender{
+- (void) tut:(id)sender{
     [[CCDirector sharedDirector] replaceScene:[SettingsMenu scene]];
 }
 
