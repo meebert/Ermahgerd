@@ -21,7 +21,7 @@
     CCTMXLayer *powerUp;
     CCTMXLayer *hazards;
     CCTMXLayer *superPower;
-
+    
     BOOL gameOver;
     BOOL musicSetting;
     BOOL soundSetting;
@@ -43,7 +43,7 @@
     //Lives Variables
     CCLabelTTF *livesLabel;
     CCLabelTTF *livesText;
-
+    
     CGPoint firstTouch;
     int usedPower[1000];
     int powerCount;
@@ -57,7 +57,7 @@
     CCSprite *pauseScreen;
     CCMenu *pauseScreenMenu;
     
-   // CCSprite *_movingSpring;
+    // CCSprite *_movingSpring;
     bool winScreenActive;
     CCLayer *winLayer;
     CCSprite *winScreen;
@@ -81,8 +81,6 @@
 @implementation GameLayer
 int lives;
 NSString *level;
-BOOL soundSetting; //Same as in GameLayer, will need to initialize based on Settings Menu
-BOOL musicSetting;
 
 +(CCScene *) scene:(int)numLives withLevel:(NSString *)theLevel
 {
@@ -99,7 +97,7 @@ BOOL musicSetting;
 	lives = numLives;
     level = theLevel;
     [[CCDirector sharedDirector] resume];
-
+    
     
 	// return the scene
 	return scene;
@@ -122,9 +120,9 @@ BOOL musicSetting;
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init]) ) {
         
-       //[self setLevel:level];
-       //[self.setLives:lives];
-       // NSLog(level);
+        //[self setLevel:level];
+        //[self.setLives:lives];
+        // NSLog(level);
         
         if(level == @"levelOne.tmx"){
             level = @"levelOne.tmx";
@@ -132,24 +130,23 @@ BOOL musicSetting;
         if(level == @"test2.tmx"){
             level = @"test2.tmx";
         }
-       if(level == NULL){
+        if(level == NULL){
             level = @"levelOne.tmx";
             lives = 3;
         }
         if(lives == 0){
             lives = 3;
         }
-     
         
-        [self refreshSettings];
         
-        if(musicSetting)
-            NSLog(@"true");
-       
+        NSLog(@" init Testststststststststststs");
+        musicSetting = true; //Will have to be able to set them here based on the Settings Menu
+        soundSetting = true; //Setting them true for now
+        
         if(musicSetting){
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"Nature_Ambiance.wav" loop:true];
         }
-
+        
         
         previousPos = player.position.x;
         powerCount = 0;
@@ -238,12 +235,6 @@ BOOL musicSetting;
 	return self;
 }
 
--(void) refreshSettings{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    soundSetting = [defaults boolForKey:kSoundKey];
-    musicSetting = [defaults boolForKey:kMusicKey];
-}
-
 -(void)pause:(id)sender{
     if(pauseScreenActive ==FALSE){
         pauseScreenActive=TRUE;
@@ -256,12 +247,12 @@ BOOL musicSetting;
         [self addChild: pauseLayer z:8];
         
         pauseScreen =[[CCSprite spriteWithFile:@"pauseButton.png"] retain];
-        pauseScreen.position= ccp(130, 240);
+        pauseScreen.position= ccp(40, 240);
         pauseScreen.rotation = -90;
         [self addChild:pauseScreen z:8];
         
         CCMenuItem *resume = [CCMenuItemImage itemFromNormalImage:@"resume.png" selectedImage:@"resumeSelect.png" target:self selector:@selector(ResumeButtonTapped:)];
-        resume.position = ccp(250, 190);
+        resume.position = ccp(260, 230);
         pauseScreenMenu = [CCMenu menuWithItems:resume, nil];
         pauseScreenMenu.position = ccp(0,-90);
         pauseScreenMenu.rotation = -90;
@@ -278,34 +269,34 @@ BOOL musicSetting;
 }
 
 /*
-- (void) pause:(id)sender{
-    gameOver = YES;
-    CCMenu *menu;
-    
-    CCLabelTTF *pauseLabel = [[CCLabelTTF alloc] initWithString:@"Paused" fontName:@"Marker Felt" fontSize:40];
-    pauseLabel.position = ccp(130, 240);
-    pauseLabel.rotation = -90;
-    
-  
-    //CCMoveBy *slideIn = [[CCMoveBy alloc] initWithDuration:1.0 position:ccp(0, 240)];
-    CCMenuItemImage *replay = [[CCMenuItemImage alloc] initWithNormalImage:@"resume.png" selectedImage:@"resumeSelect.png" disabledImage:@"resume.png" block:^(id sender) {
-        gameOver = NO;
-        pauseLabel.visible = NO;
-        //menu.visible = NO;
-       // [menu setEnabled:NO];
-        
-    }];
-    replay.rotation = -90;
-    
-    NSArray *menuItems = [NSArray arrayWithObject:replay];
-    menu = [[CCMenu alloc] initWithArray:menuItems];
-    menu.position = ccp(210,240);
-    
-    
-    [self addChild:pauseLabel];
-    [self addChild:menu];
-    
-}
+ - (void) pause:(id)sender{
+ gameOver = YES;
+ CCMenu *menu;
+ 
+ CCLabelTTF *pauseLabel = [[CCLabelTTF alloc] initWithString:@"Paused" fontName:@"Marker Felt" fontSize:40];
+ pauseLabel.position = ccp(130, 240);
+ pauseLabel.rotation = -90;
+ 
+ 
+ //CCMoveBy *slideIn = [[CCMoveBy alloc] initWithDuration:1.0 position:ccp(0, 240)];
+ CCMenuItemImage *replay = [[CCMenuItemImage alloc] initWithNormalImage:@"resume.png" selectedImage:@"resumeSelect.png" disabledImage:@"resume.png" block:^(id sender) {
+ gameOver = NO;
+ pauseLabel.visible = NO;
+ //menu.visible = NO;
+ // [menu setEnabled:NO];
+ 
+ }];
+ replay.rotation = -90;
+ 
+ NSArray *menuItems = [NSArray arrayWithObject:replay];
+ menu = [[CCMenu alloc] initWithArray:menuItems];
+ menu.position = ccp(210,240);
+ 
+ 
+ [self addChild:pauseLabel];
+ [self addChild:menu];
+ 
+ }
  */
 
 - (void) timeUpdate:(id)sender{ //Created a method to update the timer by seconds
@@ -449,8 +440,6 @@ BOOL musicSetting;
         CGPoint touchLocation = [self convertTouchToNodeSpace:t];
         
         player.jump = NO;
-        if(touches.count == 2)
-            player.jump = YES;
         
         if (touchLocation.y < 200 && touchLocation.y >200) {
             //    player.jump = YES;
@@ -548,7 +537,7 @@ BOOL musicSetting;
         if (gid){
             
             int temp = floor(player.position.x/map.tileSize.width);
-            //NSLog(@"%i", temp);
+            NSLog(@"%i", temp);
             
             int x = 0;
             BOOL test = NO;
@@ -640,8 +629,8 @@ BOOL musicSetting;
         if (gid){
             
             int temp = floor(player.position.x/map.tileSize.width);
-            //NSLog(@"%i", temp);
-
+            NSLog(@"%i", temp);
+            
             int x = 0;
             BOOL test = NO;
             for(x = 0; x < 1000;x++){
@@ -667,7 +656,7 @@ BOOL musicSetting;
                 
                 
                 score += 1000;
-
+                
             }
             test = YES;
             
@@ -720,9 +709,9 @@ BOOL musicSetting;
 
 
 -(void)nextLevelPressed:(id)sender{
-
+    
     level = @"test2.tmx";;
-
+    
     [self removeChild:winScreen cleanup:YES];
     [self removeChild:winScreenMenu cleanup:YES];
     [self removeChild:winLayer cleanup:YES];
@@ -734,7 +723,7 @@ BOOL musicSetting;
 
 -(void)mainMenuPressed:(id)sender{
     level =  @"levelOne.tmx";
-
+    
     [self removeChild:winScreen cleanup:YES];
     [self removeChild:winScreenMenu cleanup:YES];
     [self removeChild:winLayer cleanup:YES];
@@ -755,19 +744,19 @@ BOOL musicSetting;
 }
 
 -(void)mainMenu{
-     level =  @"levelOne.tmx";
+    level =  @"levelOne.tmx";
     NSLog(@"main menu pressed");
     [[CCDirector sharedDirector] replaceScene:[MainMenu scene]];
-
+    
 }
 -(void)newGame{
     [[CCDirector sharedDirector] replaceScene:[GameLayer scene:(lives) withLevel:level]];
 }
 -(void)gameOver:(BOOL)won {
 	gameOver = YES;
-
+    
 	NSString *gameText;
-    NSString *winText = @"You Are A Man!"; 
+    NSString *winText = @"You Are A Man!";
     
 	if (won) {
         gameText = winText;
@@ -776,12 +765,28 @@ BOOL musicSetting;
 	}
     
     if(!won){
-        if((lives) == 0){
-            level =  @"levelOne.tmx";
+        if((lives-1) == 0){
+            retryScreenActive = YES;
+            //if you have music uncomment the line bellow
             [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
-            [[CCDirector sharedDirector] replaceScene:[MainMenu scene]];
-        }else{
+            //[[CCDirector sharedDirector] pause];
+            CGSize s = [[CCDirector sharedDirector] winSize];
+            retryLayer = [CCLayerColor layerWithColor: ccc4(150, 150, 150, 125) width: s.width height: s.height];
+            retryLayer.position = CGPointZero;
+            [self addChild: retryLayer z:8];
             
+            retryScreen =[[CCSprite spriteWithFile:@"died.png"] retain];
+            retryScreen.position= ccp(40, 240);
+            retryScreen.rotation = -90;
+            [self addChild:retryScreen z:8];
+            
+            CCMenuItem *retry = [CCMenuItemImage itemFromNormalImage:@"main.png" selectedImage:@"mainSelect.png" target:self selector:@selector(mainMenuPressed:)];
+            retry.position = ccp(260, 230);
+            retryScreenMenu = [CCMenu menuWithItems:retry, nil];
+            retryScreenMenu.position = ccp(0,-90);
+            retryScreenMenu.rotation = -90;
+            [self addChild:retryScreenMenu z:10];
+        }else{
             
             
             retryScreenActive = YES;
@@ -793,25 +798,25 @@ BOOL musicSetting;
             retryLayer.position = CGPointZero;
             [self addChild: retryLayer z:8];
             
-            retryScreen =[[CCSprite spriteWithFile:@"dirtrock.png"] retain];
-            retryScreen.position= ccp(130, 240);
+            retryScreen =[[CCSprite spriteWithFile:@"died.png"] retain];
+            retryScreen.position= ccp(40, 240);
             retryScreen.rotation = -90;
             [self addChild:retryScreen z:8];
             
-            CCMenuItem *retry = [CCMenuItemImage itemFromNormalImage:@"resume.png" selectedImage:@"resumeSelect.png" target:self selector:@selector(diedMenu:)];
-            retry.position = ccp(250, 190);
+            CCMenuItem *retry = [CCMenuItemImage itemFromNormalImage:@"try.png" selectedImage:@"trySelect.png" target:self selector:@selector(diedMenu:)];
+            retry.position = ccp(260, 230);
             retryScreenMenu = [CCMenu menuWithItems:retry, nil];
             retryScreenMenu.position = ccp(0,-90);
             retryScreenMenu.rotation = -90;
             [self addChild:retryScreenMenu z:10];
             
-
+            
         }
-
+        
     }
     if(won && level ==  @"levelOne.tmx"){
         if(winScreenActive == NO){
-
+            
             
             
             winScreenActive = YES;
@@ -822,26 +827,25 @@ BOOL musicSetting;
             winLayer = [CCLayerColor layerWithColor: ccc4(150, 150, 150, 125) width: s.width height: s.height];
             winLayer.position = CGPointZero;
             [self addChild: winLayer z:8];
-
-            winScreen =[[CCSprite spriteWithFile:@"dirtrock.png"] retain];
-            winScreen.position= ccp(130, 240);
+            
+            winScreen =[[CCSprite spriteWithFile:@"win.png"] retain];
+            winScreen.position= ccp(40, 240);
             winScreen.rotation = -90;
             [self addChild:winScreen z:8];
-                    
-            CCMenuItem *nextLevel = [CCMenuItemImage itemFromNormalImage:@"resume.png" selectedImage:@"resumeSelect.png" target:self selector:@selector(nextLevelPressed:)];
-            nextLevel.position = ccp(250, 190);
+            
+            CCMenuItem *nextLevel = [CCMenuItemImage itemFromNormalImage:@"next.png" selectedImage:@"nextSelect.png" target:self selector:@selector(nextLevelPressed:)];
+            nextLevel.position = ccp(260, 230);
             winScreenMenu = [CCMenu menuWithItems:nextLevel, nil];
             winScreenMenu.position = ccp(0,-90);
             winScreenMenu.rotation = -90;
             [self addChild:winScreenMenu z:10];
-
+            
         }
-     
+        
         
     }else if(gameText != @"You have Died!" && level == @"test2.tmx"){
         if(rScreenActive == NO){
             rScreenActive = YES;
-            NSLog(@"dslfjhsdfhdskflhsdflksjhdflksdjhfsldkjhfsdlkfjhsdlfkhjsdlfkhjsdflkjsdhflksjhdflskjdhflskjdhf");
             //if you have music uncomment the line bellow
             [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
             //[[CCDirector sharedDirector] pause];
@@ -850,13 +854,13 @@ BOOL musicSetting;
             rLayer.position = CGPointZero;
             [self addChild: rLayer z:8];
             
-            rScreen =[[CCSprite spriteWithFile:@"dirtrock.png"] retain];
-            rScreen.position= ccp(130, 240);
+            rScreen =[[CCSprite spriteWithFile:@"win.png"] retain];
+            rScreen.position= ccp(40, 240);
             rScreen.rotation = -90;
             [self addChild:rScreen z:8];
             
-            CCMenuItem *main = [CCMenuItemImage itemFromNormalImage:@"resume.png" selectedImage:@"resumeSelect.png" target:self selector:@selector(mainMenuPressed:)];
-            main.position = ccp(250, 190);
+            CCMenuItem *main = [CCMenuItemImage itemFromNormalImage:@"main.png" selectedImage:@"mainSelect.png" target:self selector:@selector(mainMenuPressed:)];
+            main.position = ccp(290, 230);
             rScreenMenu = [CCMenu menuWithItems:main, nil];
             rScreenMenu.position = ccp(0,-90);
             rScreenMenu.rotation = -90;
@@ -864,108 +868,13 @@ BOOL musicSetting;
             
         }
     }
-
     
-    
-    
-    
-    
-    /*
-    
-    
-    if( (lives != 0) && (gameText == winText) ){
-        
-        //level = @"theLevel1.tmx";
-        
-        CCLabelTTF *diedLabel = [[CCLabelTTF alloc] initWithString:gameText fontName:@"Marker Felt" fontSize:40];
-        diedLabel.position = ccp(130, 240);
-        diedLabel.rotation = -90;
-        
-        NSString *scoreString = [NSString stringWithFormat:@"Your score is %i",score];
-        CCLabelTTF *endScore = [[CCLabelTTF alloc] initWithString:scoreString fontName:@"Marker Felt" fontSize:20];
-        endScore.position = ccp(160, 240);
-        endScore.rotation = -90;
-        
-        //CCMoveBy *slideIn = [[CCMoveBy alloc] initWithDuration:1.0 position:ccp(0, 240)];
-        CCMenuItemImage *replay = [[CCMenuItemImage alloc] initWithNormalImage:@"retry.png" selectedImage:@"retrySelected.png" disabledImage:@"retry.png" block:^(id sender) {
-            [[CCDirector sharedDirector] replaceScene:[GameLayer scene:(lives-1) withLevel:level]];
-        }];
-        replay.rotation = -90;
-        
-        NSArray *menuItems = [NSArray arrayWithObject:replay];
-        CCMenu *menu = [[CCMenu alloc] initWithArray:menuItems];
-        menu.position = ccp(210,240);
-        
-        //[self addChild:menu];
-        [self addChild:diedLabel];
-        [self addChild:endScore];
-        [self addChild:menu];
-        
-    }else if((gameText == @"You Are A Man!") && (level ==  @"levelOne.tmx")){
-        level = @"test2.tmx";
-        
-        CCLabelTTF *diedLabel = [[CCLabelTTF alloc] initWithString:gameText fontName:@"Marker Felt" fontSize:40];
-        diedLabel.position = ccp(130, 240);
-        diedLabel.rotation = -90;
-        
-        NSString *scoreString = [NSString stringWithFormat:@"Your score is %i",score];
-        CCLabelTTF *endScore = [[CCLabelTTF alloc] initWithString:scoreString fontName:@"Marker Felt" fontSize:20];
-        endScore.position = ccp(160, 240);
-        endScore.rotation = -90;
-        
-        //CCMoveBy *slideIn = [[CCMoveBy alloc] initWithDuration:1.0 position:ccp(0, 240)];
-        CCMenuItemImage *replay = [[CCMenuItemImage alloc] initWithNormalImage:@"main.png" selectedImage:@"mainSelect.png" disabledImage:@"replay.png" block:^(id sender) {
-            [[CCDirector sharedDirector] replaceScene:[MainMenu scene]];
-
-            //  [[CCDirector sharedDirector] replaceScene:[GameLayer scene:(lives-1) withLevel:level]];
-        }];
-        replay.rotation = -90;
-        
-        NSArray *menuItems = [NSArray arrayWithObject:replay];
-        CCMenu *menu = [[CCMenu alloc] initWithArray:menuItems];
-        menu.position = ccp(210,240);
-        
-        //[self addChild:menu];
-        [self addChild:diedLabel];
-        [self addChild:endScore];
-        [self addChild:menu];
-        
-    }else if(lives == 0){
-        
-        level = @"levelOne.tmx";
-        CCLabelTTF *diedLabel = [[CCLabelTTF alloc] initWithString:gameText fontName:@"Marker Felt" fontSize:40];
-        diedLabel.position = ccp(130, 240);
-        diedLabel.rotation = -90;
-        
-        NSString *scoreString = [NSString stringWithFormat:@"Your score is %i",score];
-        CCLabelTTF *endScore = [[CCLabelTTF alloc] initWithString:scoreString fontName:@"Marker Felt" fontSize:20];
-        endScore.position = ccp(160, 240);
-        endScore.rotation = -90;
-        
-        //CCMoveBy *slideIn = [[CCMoveBy alloc] initWithDuration:1.0 position:ccp(0, 240)];
-        CCMenuItemImage *replay = [[CCMenuItemImage alloc] initWithNormalImage:@"main.png" selectedImage:@"mainSelect.png" disabledImage:@"replay.png" block:^(id sender) {
-            [[CCDirector sharedDirector] replaceScene:[MainMenu scene]];
-        }];
-        replay.rotation = -90;
-        
-        NSArray *menuItems = [NSArray arrayWithObject:replay];
-        CCMenu *menu = [[CCMenu alloc] initWithArray:menuItems];
-        menu.position = ccp(210,240);
-        
-        //[self addChild:menu];
-        [self addChild:diedLabel];
-        [self addChild:endScore];
-        [self addChild:menu];
-    }
-    
-    */    
-    //[menu runAction:slideIn];
 }
 
 
 -(void)checkForWin {
     //373.0*16
-    if (player.position.x > 900) {
+    if (player.position.x > 400) {
         [self gameOver:1];
     }
 }
