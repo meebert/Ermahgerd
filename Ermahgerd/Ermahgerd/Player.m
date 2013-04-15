@@ -42,6 +42,7 @@ BOOL musicSetting;
 
 -(void)update:(ccTime)time
 {
+    [self refreshSettings];
     CGPoint gravity = ccp(0.0, -300.0);
     CGPoint gravityStep = ccpMult(gravity, time);
     

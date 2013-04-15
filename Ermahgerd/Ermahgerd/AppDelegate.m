@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "MainMenu.h"
 #import "GameLayer.h"
+#import "Player.h"
 
 @implementation AppController
 
@@ -110,6 +111,7 @@
 {
 	if( [navController_ visibleViewController] == director_ )
 		[director_ resume];
+    
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
@@ -122,6 +124,7 @@
 {
 	if( [navController_ visibleViewController] == director_ )
 		[director_ startAnimation];
+    
 }
 
 // application will be killed

@@ -308,6 +308,8 @@ NSString *level;
 -(void)update:(ccTime)dt {
     [player update:dt];
     
+    [self refreshSettings];
+    
     if(!gameOver){
         if(player.position.x > (previousPos + 1)){
             score ++;
@@ -444,10 +446,10 @@ NSString *level;
         if (touchLocation.y < 200 && touchLocation.y >200) {
             //    player.jump = YES;
         }
-        if (touchLocation.y > 240 && touchLocation.x > 200) {
+        if (touchLocation.y > 240){ // && touchLocation.x > 200) {
             player.forward = YES;
         }
-        if(touchLocation.y < 240 && touchLocation.x > 200){
+        if(touchLocation.y < 240){ // && touchLocation.x > 200){
             player.backward = YES;
         }
         if(touchLocation.x > 200){

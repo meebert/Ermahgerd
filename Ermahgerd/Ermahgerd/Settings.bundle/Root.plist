@@ -12,9 +12,9 @@
 		</dict>
 		<dict>
 			<key>TrueValue</key>
-			<string>TRUE</string>
+			<true/>
 			<key>FalseValue</key>
-			<string>FALSE</string>
+			<false/>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
@@ -22,21 +22,21 @@
 			<key>Key</key>
 			<string>music_setting</string>
 			<key>DefaultValue</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>TrueValue</key>
-			<string>TRUE</string>
+			<true/>
 			<key>FalseValue</key>
-			<string>FALSE</string>
+			<false/>
 			<key>Title</key>
 			<string>Sound Setting</string>
 			<key>Key</key>
 			<string>sound_setting</string>
 			<key>DefaultValue</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Type</key>
