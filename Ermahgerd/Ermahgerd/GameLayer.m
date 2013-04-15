@@ -308,7 +308,7 @@ NSString *level;
 -(void)update:(ccTime)dt {
     [player update:dt];
     
-    [self refreshSettings];
+   // [self refreshSettings];
     
     if(!gameOver){
         if(player.position.x > (previousPos + 1)){

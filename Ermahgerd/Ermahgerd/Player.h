@@ -22,6 +22,6 @@
 @property (nonatomic, assign) BOOL backward;
 @property (nonatomic, assign) BOOL jump;
 
-@property (nonatomic, assign) CCSpriteSheet *emanSheet;
+//@property (nonatomic, assign) CCSpriteSheet *emanSheet;
     
 @end

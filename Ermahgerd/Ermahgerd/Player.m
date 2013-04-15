@@ -20,7 +20,7 @@
 @synthesize forward = _forward;
 @synthesize jump = _jump;
 @synthesize backward = _backward;
-@synthesize emanSheet;
+//@synthesize emanSheet;
 
 BOOL soundSetting; //Same as in GameLayer, will need to initialize based on Settings Menu
 BOOL musicSetting;
@@ -41,7 +41,7 @@ BOOL musicSetting;
 		// position the sprite in the center of the screen
         
 		// create the animation
-                    
+        /*
         NSMutableArray *frameArray;
         
 			for (int x = 0; x < 6; x++) {
@@ -58,7 +58,7 @@ BOOL musicSetting;
         
 		// run the action
 		//[danceSprite runAction:repeat];
-                    
+          */          
 	}
     
 	return self;
