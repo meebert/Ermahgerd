@@ -167,7 +167,6 @@
 		BD9C489616FA9AD500E69FC1 /* erman.png in Resources */ = {isa = PBXBuildFile; fileRef = BD9C489516FA9AD500E69FC1 /* erman.png */; };
 		BDC2E01016E69CDB00C11EBC /* level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = BDC2E00E16E69CDB00C11EBC /* level1.tmx */; };
 		BDC2E01316E69D2E00C11EBC /* koalio_stand.png in Resources */ = {isa = PBXBuildFile; fileRef = BDC2E01216E69D2E00C11EBC /* koalio_stand.png */; };
-		BDC2E01516E6C22100C11EBC /* stickstand.png in Resources */ = {isa = PBXBuildFile; fileRef = BDC2E01416E6C22000C11EBC /* stickstand.png */; };
 		BDC2E01E16E6C56E00C11EBC /* dirtrock.png in Resources */ = {isa = PBXBuildFile; fileRef = BDC2E01C16E6C56E00C11EBC /* dirtrock.png */; };
 		BDC2E01F16E6C56E00C11EBC /* map.tmx in Resources */ = {isa = PBXBuildFile; fileRef = BDC2E01D16E6C56E00C11EBC /* map.tmx */; };
 		BDEB53DC16ED44DA0038DCA0 /* SettingsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = BDEB53DB16ED44DA0038DCA0 /* SettingsMenu.m */; };
@@ -476,7 +475,6 @@
 		BD9C489516FA9AD500E69FC1 /* erman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = erman.png; sourceTree = "<group>"; };
 		BDC2E00E16E69CDB00C11EBC /* level1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = level1.tmx; sourceTree = "<group>"; };
 		BDC2E01216E69D2E00C11EBC /* koalio_stand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = koalio_stand.png; sourceTree = "<group>"; };
-		BDC2E01416E6C22000C11EBC /* stickstand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stickstand.png; path = Resources/stickstand.png; sourceTree = "<group>"; };
 		BDC2E01C16E6C56E00C11EBC /* dirtrock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dirtrock.png; sourceTree = "<group>"; };
 		BDC2E01D16E6C56E00C11EBC /* map.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map.tmx; sourceTree = "<group>"; };
 		BDEB53DA16ED44DA0038DCA0 /* SettingsMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMenu.h; sourceTree = "<group>"; };
@@ -605,7 +603,6 @@
 				BDC2E01C16E6C56E00C11EBC /* dirtrock.png */,
 				BDC2E01D16E6C56E00C11EBC /* map.tmx */,
 				BD3FC11716E6791B00E8E026 /* fps_images.png */,
-				BDC2E01416E6C22000C11EBC /* stickstand.png */,
 				BDEB541E16F013080038DCA0 /* demo.tmx */,
 				BD3FC11916E6791B00E8E026 /* fps_images-hd.png */,
 				BD3FC11B16E6791B00E8E026 /* fps_images-ipadhd.png */,
@@ -1029,7 +1026,6 @@
 				BD3FC26916E6791F00E8E026 /* ChangeLog in Resources */,
 				BDC2E01016E69CDB00C11EBC /* level1.tmx in Resources */,
 				BDC2E01316E69D2E00C11EBC /* koalio_stand.png in Resources */,
-				BDC2E01516E6C22100C11EBC /* stickstand.png in Resources */,
 				BDC2E01E16E6C56E00C11EBC /* dirtrock.png in Resources */,
 				BDC2E01F16E6C56E00C11EBC /* map.tmx in Resources */,
 				BDEB540416EF9CDF0038DCA0 /* settingsSelect.png in Resources */,

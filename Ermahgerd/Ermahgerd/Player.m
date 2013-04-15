@@ -9,15 +9,18 @@
 #import "Player.h"
 #import "SimpleAudioEngine.h"
 #import "MainMenu.h"
+#import "cocos2d.h"
 
 
 @implementation Player
+
 @synthesize velocity = _velocity;
 @synthesize desiredPos = _desiredPos;
 @synthesize ground = _ground;
 @synthesize forward = _forward;
 @synthesize jump = _jump;
 @synthesize backward = _backward;
+@synthesize emanSheet;
 
 BOOL soundSetting; //Same as in GameLayer, will need to initialize based on Settings Menu
 BOOL musicSetting;
@@ -31,7 +34,35 @@ BOOL musicSetting;
     
     [self refreshSettings];
     
-    return self;
+	if (self) {
+		// create the sprite sheet
+		// create the sprite
+        
+		// position the sprite in the center of the screen
+        
+		// create the animation
+                    
+        NSMutableArray *frameArray;
+        
+			for (int x = 0; x < 6; x++) {
+				CCSprite *frame = [CCSprite spriteWithFile:@"emanSheet.png" rect:CGRectMake(x*85,121,85,121)];
+				//[moveAnimation addFrame:frame];
+                [frameArray addObject:frame];
+			}
+                    
+        CCAnimation *moveAnimation = [CCAnimation animationWithSpriteFrames:frameArray delay:0.1f];
+        
+		// create the action
+		CCAnimate *moveAction = [CCAnimate actionWithAnimation:moveAnimation];
+		CCRepeatForever *repeat = [CCRepeatForever actionWithAction:moveAction];
+        
+		// run the action
+		//[danceSprite runAction:repeat];
+                    
+	}
+    
+	return self;
+
 }
 
 -(void) refreshSettings{
@@ -91,8 +122,5 @@ BOOL musicSetting;
     CGRect returnBoundingBox = CGRectOffset(collisionBox, diff.x, diff.y);
     return returnBoundingBox;
 }
-
-
-
 
 @end
