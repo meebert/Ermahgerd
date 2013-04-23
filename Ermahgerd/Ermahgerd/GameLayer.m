@@ -139,7 +139,7 @@ NSString *level;
         }
         
         
-        NSLog(@" init Testststststststststststs");
+    //    NSLog(@" init Testststststststststststs");
         musicSetting = true; //Will have to be able to set them here based on the Settings Menu
         soundSetting = true; //Setting them true for now
         
@@ -159,7 +159,7 @@ NSString *level;
         [self addChild:map];
         
         
-        player = [[Player alloc] initWithFile:@"erman.png"];
+        player = [[Player alloc] initWithFile:@"emanGhost.png"];
         player.position = ccp(100, 200);
         [map addChild:player z:15];
         score = 0;
@@ -217,17 +217,30 @@ NSString *level;
         CCLayer *menuLayer = [[CCLayer alloc] init];
         
         [self addChild:menuLayer];
+     
+        CCMenuItemImage *mainButton   = [CCMenuItemImage
+                                        itemFromNormalImage:@"mainButton.png"
+                                        selectedImage:@"mainButton.png"
+                                        target:self
+                                        selector:@selector(mainMenuPressed:)];
+        
         
         CCMenuItemImage *pauseButton = [CCMenuItemImage
-                                        itemFromNormalImage:@"pause.png"
-                                        selectedImage:@"pause.png"
+                                        itemFromNormalImage:@"pauseIt.png"
+                                        selectedImage:@"pauseIt.png"
                                         target:self
                                         selector:@selector(pause:)];
         
+        
+        mainButton.rotation = -90;
+        mainButton.position = ccp(-140, -95);
+        
         pauseButton.rotation = -90;
-        pauseButton.position = ccp(-150, -190);
-        CCMenu *pauseMenu = [CCMenu menuWithItems: pauseButton, nil];
+        pauseButton.position = ccp(-140, -205);
+        CCMenu *pauseMenu = [CCMenu menuWithItems: pauseButton ,mainButton, nil];
         [menuLayer addChild:pauseMenu];
+        
+   
         
         [self schedule:@selector(update:)];
         
@@ -305,10 +318,26 @@ NSString *level;
     counter++;
 }
 
+-(void) refreshSettings{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    soundSetting = [defaults boolForKey:kSoundKey];
+    musicSetting = [defaults boolForKey:kMusicKey];
+}
+
 -(void)update:(ccTime)dt {
     [player update:dt];
     
-   // [self refreshSettings];
+    if(time <= 0){
+        [self gameOver:YES];
+    }
+    
+    [self refreshSettings];
+    
+    if(musicSetting)
+        [[SimpleAudioEngine sharedEngine] resumeBackgroundMusic];
+    else
+        [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
+  
     
     if(!gameOver){
         if(player.position.x > (previousPos + 1)){
@@ -442,16 +471,29 @@ NSString *level;
         CGPoint touchLocation = [self convertTouchToNodeSpace:t];
         
         player.jump = NO;
+        //printf("%i \n" , touches.count);
+        if(touches.count == 2){
+            player.jump = YES;
+        }else{
+            if (touchLocation.y > 240){ // && touchLocation.x > 200) {
+                if(player.backward != YES){
+                    player.forward = YES;
+                }
+            }if(touchLocation.y < 240){ // && touchLocation.x > 200){
+                if(player.forward != YES){
+                    player.backward = YES;
+                }
+           
+            }
+        }
+        if(player.forward == YES && touchLocation.y < 240){
+            player.jump = YES;
+        }
+        if(player.backward == YES && touchLocation.y > 240){
+            player.jump = YES;
+        }
         
-        if (touchLocation.y < 200 && touchLocation.y >200) {
-            //    player.jump = YES;
-        }
-        if (touchLocation.y > 240){ // && touchLocation.x > 200) {
-            player.forward = YES;
-        }
-        if(touchLocation.y < 240){ // && touchLocation.x > 200){
-            player.backward = YES;
-        }
+        
         if(touchLocation.x > 200){
             firstTouch = touchLocation;
         }
@@ -468,19 +510,11 @@ NSString *level;
         
         float swipeLength = ccpDistance((firstTouch), touchLocation);
         if (firstTouch.x > touchLocation.x && swipeLength > 60) {
-            player.jump = YES;
+          //  player.jump = YES;
         } else if (firstTouch.x < touchLocation.x && swipeLength > 60){
-            player.jump = YES;
+          //  player.jump = YES;
         } else {
-            player.jump = NO;
-        }
-        
-        if (touchLocation.x < 200 && previousTouchLocation.y <= 240){
-            player.forward = NO;
-            //player.jump = YES;
-        }else if (previousTouchLocation.x < 200 && touchLocation.y <=240){
-            player.forward = YES;
-            //  player.jump = NO;
+           // player.jump = NO;
         }
     }
 }
@@ -488,10 +522,20 @@ NSString *level;
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *t in touches){
         CGPoint touchLocation = [self convertTouchToNodeSpace:t];
+        
+        if(touchLocation.y < 240 && player.forward == YES){
+            player.forward = YES;
+            player.jump = NO;
+        }else if(touchLocation.y > 240 && player.backward ==YES){
+            player.backward = YES;
+            player.jump = NO;
+            
+        }else{
+            player.forward = NO;
+            player.backward = NO;
+            player.jump = NO;
+        }
     }
-    player.forward = NO;
-    player.backward = NO;
-    player.jump = NO;
 }
 
 -(void)setViewpointCenter:(CGPoint) position {
@@ -539,7 +583,7 @@ NSString *level;
         if (gid){
             
             int temp = floor(player.position.x/map.tileSize.width);
-            NSLog(@"%i", temp);
+          //  NSLog(@"%i", temp);
             
             int x = 0;
             BOOL test = NO;
@@ -631,7 +675,7 @@ NSString *level;
         if (gid){
             
             int temp = floor(player.position.x/map.tileSize.width);
-            NSLog(@"%i", temp);
+           // NSLog(@"%i", temp);
             
             int x = 0;
             BOOL test = NO;
@@ -747,7 +791,7 @@ NSString *level;
 
 -(void)mainMenu{
     level =  @"levelOne.tmx";
-    NSLog(@"main menu pressed");
+  //  NSLog(@"main menu pressed");
     [[CCDirector sharedDirector] replaceScene:[MainMenu scene]];
     
 }
@@ -876,7 +920,7 @@ NSString *level;
 
 -(void)checkForWin {
     //373.0*16
-    if (player.position.x > 400) {
+    if (player.position.x > 373.0*16) {
         [self gameOver:1];
     }
 }

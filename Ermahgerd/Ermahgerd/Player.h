@@ -22,6 +22,11 @@
 @property (nonatomic, assign) BOOL backward;
 @property (nonatomic, assign) BOOL jump;
 
+@property (nonatomic, strong) CCAction *walkAction;
+@property (nonatomic, strong) CCAction *jumpAction;
+@property (nonatomic, strong) CCSprite *emanWalk;
+@property (nonatomic, strong) CCSprite *emanJump;
+
 //@property (nonatomic, assign) CCSpriteSheet *emanSheet;
     
 @end

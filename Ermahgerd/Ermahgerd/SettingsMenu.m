@@ -154,8 +154,8 @@ CCMenuItemImage *backButton;
     
     
     backButton = [CCMenuItemImage
-                  itemFromNormalImage:@"jump.png"
-                  selectedImage:@"jump.png"
+                  itemFromNormalImage:@"credits.png"
+                  selectedImage:@"credits.png"
                   target:self
                   selector:@selector(mainMenu:)];
     backButton.rotation = -90;
