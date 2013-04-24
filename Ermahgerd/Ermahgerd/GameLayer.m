@@ -30,6 +30,10 @@
     CCLabelTTF *scoreLabel;
     CCLabelTTF *scoreText;
     int score;
+  
+    CCLabelTTF *highScoreLabel;
+    CCLabelTTF *highScoreText;
+    int highScore;
     
     //Timer Variable
     CCLabelTTF *timeLabel;
@@ -127,8 +131,8 @@ NSString *level;
         if(level == @"levelOne.tmx"){
             level = @"levelOne.tmx";
         }
-        if(level == @"test2.tmx"){
-            level = @"test2.tmx";
+        if(level == @"level2.tmx"){
+            level = @"level2.tmx";
         }
         if(level == NULL){
             level = @"levelOne.tmx";
@@ -163,6 +167,11 @@ NSString *level;
         player.position = ccp(100, 200);
         [map addChild:player z:15];
         score = 0;
+    
+        highScore = [[[NSUserDefaults standardUserDefaults] objectForKey:@"highScore"] intValue ];
+        NSLog(@"%d \n" ,highScore);
+        
+       // highScore = 0;
         time = 180;
         //map.rotation = -45;
         float mapWidth;
@@ -178,10 +187,21 @@ NSString *level;
         scoreLabel.rotation = -90;
         [self addChild:scoreLabel z:1];
         
+        highScoreLabel = [[CCLabelTTF alloc] initWithString:@"0" fontName:@"Marker Felt" fontSize:20];
+        highScoreLabel.position = ccp(60, 440);
+        highScoreLabel.rotation = -90;
+        [self addChild:highScoreLabel z:1];
+        
         scoreText = [[CCLabelTTF alloc] initWithString:@"Score:" fontName:@"Marker Felt" fontSize:20];
         scoreText.position = ccp(15, 380);
         scoreText.rotation = -90;
         [self addChild:scoreText z:1];
+     
+        
+        highScoreText = [[CCLabelTTF alloc] initWithString:@"High Score:" fontName:@"Marker Felt" fontSize:20];
+        highScoreText.position = ccp(60, 380);
+        highScoreText.rotation = -90;
+        [self addChild:highScoreText z:1];
         
         timeLabel = [[CCLabelTTF alloc] initWithString:@"180" fontName:@"Marker Felt" fontSize:20];
         timeLabel.position = ccp(30, 440);
@@ -328,7 +348,7 @@ NSString *level;
     [player update:dt];
     
     if(time <= 0){
-        [self gameOver:YES];
+        [self gameOver:0];
     }
     
     [self refreshSettings];
@@ -349,6 +369,9 @@ NSString *level;
     }
     NSString *scoreString = [NSString stringWithFormat:@"%i",score];
     [scoreLabel setString:scoreString];
+   
+    NSString *highScoreString = [NSString stringWithFormat:@"%i",highScore];
+    [highScoreLabel setString:highScoreString];
     
     NSString *livesString = [NSString stringWithFormat:@"%i",lives];
     [livesLabel setString:livesString];
@@ -756,7 +779,7 @@ NSString *level;
 
 -(void)nextLevelPressed:(id)sender{
     
-    level = @"test2.tmx";;
+    level = @"level2.tmx";
     
     [self removeChild:winScreen cleanup:YES];
     [self removeChild:winScreenMenu cleanup:YES];
@@ -806,6 +829,13 @@ NSString *level;
     
 	if (won) {
         gameText = winText;
+        
+        if(score > highScore){
+            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:score] forKey:@"highScore"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            NSLog(@"SCORE IS HIGHER. SAVE NEW HIGH SCORE");
+        }
+        
 	} else {
 		gameText = @"You have Died!";
 	}
@@ -832,6 +862,7 @@ NSString *level;
             retryScreenMenu.position = ccp(0,-90);
             retryScreenMenu.rotation = -90;
             [self addChild:retryScreenMenu z:10];
+            
         }else{
             
             
@@ -889,7 +920,7 @@ NSString *level;
         }
         
         
-    }else if(gameText != @"You have Died!" && level == @"test2.tmx"){
+    }else if(gameText != @"You have Died!" && level == @"level2.tmx"){
         if(rScreenActive == NO){
             rScreenActive = YES;
             //if you have music uncomment the line bellow

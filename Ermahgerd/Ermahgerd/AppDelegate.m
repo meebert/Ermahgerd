@@ -21,6 +21,9 @@
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"music"];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"sounds"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
 	// Create an CCGLView with a RGB565 color buffer, and a depth buffer of 0-bits
 	CCGLView *glView = [CCGLView viewWithFrame:[window_ bounds]
